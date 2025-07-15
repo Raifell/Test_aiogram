@@ -1,7 +1,9 @@
 from aiogram import types
 
 
+
 class TextFunction:
+
 
     async def text(self, message: types.Message):
         if message.text == 't':
@@ -20,23 +22,18 @@ class TextFunction:
         await self.bot.send_message(
             chat_id=message.chat.id,
             text='Hello {}'.format(message.from_user.full_name),
-            reply_markup=self.markup.keyboard_one
+            reply_markup=self.markup.keyboard_one()
         )
 
     async def help(self, message: types.Message):
         await self.bot.send_message(
             chat_id=message.chat.id,
-            text='Test echo bot'
+            text='Test echo bot',
+            reply_markup=self.markup.keyboard_two()
         )
 
-    async def btn_1(self, message: types.Message):
+    async def btn(self, message: types.Message):
         await self.bot.send_message(
             chat_id=message.chat.id,
-            text='detect button 1'
-        )
-
-    async def btn_2(self, message: types.Message):
-        await self.bot.send_message(
-            chat_id=message.chat.id,
-            text='detect button 2'
+            text='detect {}'.format(message.text.lower())
         )

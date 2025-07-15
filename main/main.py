@@ -13,10 +13,11 @@ class Telebot(Config, TextFunction):
     def __init__(self):
         super().__init__()
         self.markup = Keyboard()
+        self.btn_name = ['button 1', 'button 2', 'button 3', 'button 4']
+
         self.start_action = self.dp.message(Command('start'))(self.start)
         self.help_action = self.dp.message(Command('help'))(self.help)
-        self.btn_1_action = self.dp.message(F.text.lower() == 'button 1')(self.btn_1)
-        self.btn_2_action = self.dp.message(F.text.lower() == 'button 2')(self.btn_2)
+        self.btn_action = self.dp.message(F.text.lower().in_(self.btn_name))(self.btn)
         self.text_action = self.dp.message()(self.text)
 
     async def run(self):
